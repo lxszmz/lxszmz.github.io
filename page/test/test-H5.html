@@ -33,9 +33,27 @@
     $(function(){
        var h5 = new H5();
        h5.addPage("page-1").
-        addComponent("logo","首页").
+            addComponent("logo",{
+                   text:"首页",
+                   width: 200,
+                   height: 60,
+                   css:{
+                     background:"green",
+                     top:"50%"
+                   },
+                   center:true
+               }).
         addPage("page-2").
-        addComponent("desc","描述也").loader();
+            addComponent("desc",{
+                   text:"描述页",
+                   width: 200,
+                   height: 60,
+                   css:{
+                       background:"red"
+                   },
+                   center:true
+
+               }).loader();
             
     });
     </script>

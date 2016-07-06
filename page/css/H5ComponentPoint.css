@@ -1,1 +1,8 @@
 /* 散点图组件样式 */
+.h5_component_point{
+}
+.h5_component_point .point{
+    position: absolute;
+    border-radius: 50%;
+    transition: all 1s 1s;
+}

@@ -1,1 +1,6 @@
 /* H5对象的全局样式 */
+.logo{
+    width: 200px;
+    height: 50px;
+    background-color: green;
+}

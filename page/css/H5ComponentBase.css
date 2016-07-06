@@ -3,6 +3,15 @@
     position: absolute;
     background-size:100%;
     background-repeat:no-repeat;
-    opacity:0;
-    
+    /*opacity:0;*/
 }
+
+
+.h5_component_base_load{
+    opacity: 1;
+}
+
+.h5_component_base_leave{
+    opacity: 0;
+}
+

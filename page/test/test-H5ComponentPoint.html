@@ -40,7 +40,21 @@
         </div>
 
         <script type="text/javascript">
-
+            var point = new H5ComponentPoint("point",{
+                type:"point",
+                width: 300,
+                height: 300,
+                center:true,
+                css:{
+                    top:"50%"
+                },
+                data:[
+                        ["A项",0.4,"red"],
+                        ["B项",0.2,"green",30,"-60%"],
+                        ["C项",0.2,"blue",50,"120%"]
+                ]
+            });
+            $(".iphone").append(point);
         </script>
 
     </body>
