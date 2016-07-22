@@ -21,22 +21,13 @@ function newGame(){
 
 function init(){
     for(var i =0;i<4;i++){
+        board[i]=new Array();
         for(var j = 0;j<4;j++){
-
+            board[i][j]=0;
             var gridCell = $("#grid-cell-"+i+"-"+j);
 
             gridCell.css('top',getPosTop(i,j));
             gridCell.css('left',getPosLeft(i,j));
-        }
-    }
-
-
-
-    for(var i =0;i<4;i++){
-        board[i]=new Array();
-        for(var j = 0;j<4;j++){
-
-            board[i][j]=0;
         }
     }
 
@@ -67,7 +58,9 @@ function updateBoardView(){
 
                 theNumberCell.css("background-color",getBackgroundColor(board[i][j]));
                 theNumberCell.css("color",getNumberColor(board[i][j]));
-
+                if(board[i][j]>512){
+                    theNumberCell.css("font-size","40px");
+                }
                 theNumberCell.text(board[i][j]);
 
             }
