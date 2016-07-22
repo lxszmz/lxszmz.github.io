@@ -51,7 +51,7 @@ function updateBoardView(){
         for(var j = 0;j<4;j++){
             $("#grid-container").append('<div class="number-cell" id="number-cell-'+i+'-'+j+'"></div>');
             var theNumberCell = $("#number-cell-"+i+"-"+j);
-
+            $("#score").text(score);
             if(board[i][j]==0){
                 theNumberCell.css("width","0px");
                 theNumberCell.css("height","0px");
@@ -153,6 +153,7 @@ function moveLeft(){
 
                     }else if(board[i][k]==board[i][j]&&noBlockLeft(i,k,j,board)){
                         board[i][k]+=board[i][j];
+                        score+=board[i][k];
                         board[i][j]=0;
                         showMoveAnimation(i,j,i,k);
                         continue;
@@ -185,6 +186,7 @@ function moveRight() {
 
                     } else if (board[i][k] == board[i][j] && noBlockRight(i, k, j, board)) {
                         board[i][k] += board[i][j];
+                        score+=board[i][k];
                         board[i][j] = 0;
                         showMoveAnimation(i, j, i, k);
 
@@ -218,6 +220,8 @@ function moveUp(){
 
                     }else if(board[k][j]==board[i][j]&&noBlockUp(k,j,i,board)){
                         board[k][j]+=board[i][j];
+
+                        score+=board[k][j];
                         board[i][j]=0;
                         showMoveAnimation(i,j,k,j);
                         continue;
@@ -250,6 +254,7 @@ function moveDown() {
 
                     } else if (board[k][j] == board[i][j] && noBlockDown(i, k, j, board)) {
                         board[k][j] += board[i][j];
+                        score+=board[k][j];
                         board[i][j] = 0;
                         showMoveAnimation(i,j,k,j);
 
