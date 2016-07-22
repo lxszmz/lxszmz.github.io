@@ -20,6 +20,7 @@ function newGame(){
 }
 
 function init(){
+    score=0;
     for(var i =0;i<4;i++){
         board[i]=new Array();
         for(var j = 0;j<4;j++){
