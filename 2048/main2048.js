@@ -4,12 +4,42 @@
 var board = new Array();
 var score = 0;
 
+var documentScreenWidth = window.screen.availWidth;
+var gridWidth = 0.92*documentScreenWidth;
+var cellWidth = 0.18*documentScreenWidth;
+var gapWidth = 0.04*documentScreenWidth;
+
+console.log( window.screen);
+
+function prepareForMobel(){
+    $("#grid-container").css("width",gridWidth - 2*gapWidth);
+    $("#grid-container").css("height",gridWidth - 2*gapWidth);
+    $("#grid-container").css("padding",gapWidth);
+    $("#grid-container").css("border-radius",0.02*gridWidth);
+    $("#grid-container").css("margin-top",2*gapWidth);
+    $("#grid-container").css("margin-bottom",2*gapWidth);
+    $(".grid-cell").css("width",cellWidth);
+    $(".grid-cell").css("height",cellWidth);
+    $(".grid-cell").css("border-radius",0.02*cellWidth);
+}
+
+
 $(document).ready(function(){
+    if(documentScreenWidth>500){
+        cellWidth =100;
+        gapWidth = 20;
+    }else{
+        prepareForMobel();
+    }
+
     newGame();
 });
 
 
 function newGame(){
+
+
+
     //初始化
     init();
     //在随机两个格子中生成数字
@@ -48,11 +78,11 @@ function updateBoardView(){
                 theNumberCell.css("width","0px");
                 theNumberCell.css("height","0px");
 
-                theNumberCell.css("top",getPosTop(i,j)+50);
-                theNumberCell.css("left",getPosLeft(i,j)+50);
+                theNumberCell.css("top",getPosTop(i,j)+cellWidth/2);
+                theNumberCell.css("left",getPosLeft(i,j)+cellWidth/2);
             }else{
-                theNumberCell.css("width","100px");
-                theNumberCell.css("height","100px");
+                theNumberCell.css("width",cellWidth+"px");
+                theNumberCell.css("height",cellWidth+"px");
 
                 theNumberCell.css("top",getPosTop(i,j));
                 theNumberCell.css("left",getPosLeft(i,j));
@@ -92,27 +122,91 @@ function  generateOneNumber(){
     showNumberAnimation(randx,randy,number);
 }
 
+var startx = 0;
+var starty=0;
+//支持触控
+document.addEventListener('touchstart',function(event){
+    startx = event.touches[0].pageX;
+    starty = event.touches[0].pageY;
+});
+
+document.addEventListener('touchend',function(event){
+    var endx = event.changedTouches[0].pageX;
+    var endy = event.changedTouches[0].pageY;
+    var deltax = endx - startx;
+    var deltay = endy-starty;
+    if(Math.abs(deltax) < 0.3*documentWidth && Math.abs(deltay) < 0.3*documentWidth){
+        return;
+    }
+    if(Math.abs(deltax) >Math.abs(deltay)){
+        if(deltax < 0){
+            if(isGameOver())
+                alert("Game Over!");
+            if(canMoveLeft()){
+                moveLeft();
+                setTimeout(updateBoardView,250);
+                generateOneNumber();
+            }
+        }else{
+            if(isGameOver())
+                alert("Game Over!");
+            if(canMoveRight()){
+                moveRight();
+                setTimeout(updateBoardView,250);
+                generateOneNumber();
+            }
+        }
+    }else{
+        if(deltay < 0){
+            if(isGameOver())
+                alert("Game Over!");
+            if(canMoveUp()){
+                moveUp();
+                setTimeout(updateBoardView,250);
+                generateOneNumber();
+            }
+        }else{
+            if(isGameOver())
+                alert("Game Over!");
+            if(canMoveDown()){
+                moveDown();
+                setTimeout(updateBoardView,250);
+                generateOneNumber();
+            }
+        }
+    }
+});
+
+document.addEventListener('touchmove',function(event){
+    event.preventDefault();
+});
+
+
 $(document).keydown(function(event){
     switch (event.keyCode){
         case 37:
+            event.preventDefault();
             if(moveLeft()){
                 generateOneNumber();
                 isGameOver();
             }
             break;
         case 38:
+            event.preventDefault();
             if(moveUp()){
                 generateOneNumber();
                 isGameOver();
             }
             break;
         case 39:
+            event.preventDefault();
             if(moveRight()){
                 generateOneNumber();
                 isGameOver();
             }
             break;
         case 40:
+            event.preventDefault();
             if(moveDown()){
                 generateOneNumber();
                 isGameOver();

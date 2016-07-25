@@ -2,10 +2,10 @@
  * Created by xiaosong on 2016/7/22.
  */
 function getPosTop(i,j){
-    return 20+i*120;
+    return gapWidth+i*(cellWidth+gapWidth);
 }
 function getPosLeft(i,j){
-    return 20+j*120;
+    return gapWidth+j*(cellWidth+gapWidth);
 }
 
 

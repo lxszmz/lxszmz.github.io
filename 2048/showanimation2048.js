@@ -9,8 +9,8 @@ function showNumberAnimation(i,j,number){
     theNumberCell.text(number);
 
     theNumberCell.animate({
-        "width":"100px",
-        "height":"100px",
+        "width":cellWidth+"px",
+        "height":cellWidth+"px",
         "top":getPosTop(i,j),
         "left":getPosLeft(i,j)
     },500);
