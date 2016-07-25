@@ -135,43 +135,31 @@ document.addEventListener('touchend',function(event){
     var endy = event.changedTouches[0].pageY;
     var deltax = endx - startx;
     var deltay = endy-starty;
-    if(Math.abs(deltax) < 0.3*documentWidth && Math.abs(deltay) < 0.3*documentWidth){
+    if(Math.abs(deltax) < 0.3*documentScreenWidth && Math.abs(deltay) < 0.3*documentScreenWidth){
         return;
     }
     if(Math.abs(deltax) >Math.abs(deltay)){
         if(deltax < 0){
-            if(isGameOver())
-                alert("Game Over!");
-            if(canMoveLeft()){
-                moveLeft();
-                setTimeout(updateBoardView,250);
+            if(moveLeft()){
                 generateOneNumber();
+                isGameOver();
             }
         }else{
-            if(isGameOver())
-                alert("Game Over!");
-            if(canMoveRight()){
-                moveRight();
-                setTimeout(updateBoardView,250);
+            if(moveRight()){
                 generateOneNumber();
+                isGameOver();
             }
         }
     }else{
         if(deltay < 0){
-            if(isGameOver())
-                alert("Game Over!");
-            if(canMoveUp()){
-                moveUp();
-                setTimeout(updateBoardView,250);
+            if(moveUp()){
                 generateOneNumber();
+                isGameOver();
             }
         }else{
-            if(isGameOver())
-                alert("Game Over!");
-            if(canMoveDown()){
-                moveDown();
-                setTimeout(updateBoardView,250);
+            if(moveDown()){
                 generateOneNumber();
+                isGameOver();
             }
         }
     }
