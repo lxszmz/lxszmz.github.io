@@ -7,7 +7,8 @@ function showNumberAnimation(i,j,number){
     theNumberCell.css("background-color",getBackgroundColor(number));
     theNumberCell.css("color",getNumberColor(number));
     theNumberCell.text(number);
-
+    theNumberCell.css("font-size",0.6*cellWidth+"px");
+    theNumberCell.css("line-height",cellWidth+"px");
     theNumberCell.animate({
         "width":cellWidth+"px",
         "height":cellWidth+"px",

@@ -4,33 +4,33 @@
 var board = new Array();
 var score = 0;
 
-var documentScreenWidth = window.screen.availWidth;
-var gridWidth = 0.92*documentScreenWidth;
-var cellWidth = 0.18*documentScreenWidth;
-var gapWidth = 0.04*documentScreenWidth;
 
-console.log( window.screen);
+var documentScreenWidth = window.screen.availWidth;
+var gridWidth = 0.92*documentScreenWidth*2.5;
+var cellWidth = 0.18*documentScreenWidth*2.5;
+var gapWidth = 0.04*documentScreenWidth*2.5;
+
 
 function prepareForMobel(){
-    $("#grid-container").css("width",gridWidth - 2*gapWidth);
-    $("#grid-container").css("height",gridWidth - 2*gapWidth);
-    $("#grid-container").css("padding",gapWidth);
-    $("#grid-container").css("border-radius",0.02*gridWidth);
-    $("#grid-container").css("margin-top",2*gapWidth);
-    $("#grid-container").css("margin-bottom",2*gapWidth);
-    $(".grid-cell").css("width",cellWidth);
-    $(".grid-cell").css("height",cellWidth);
-    $(".grid-cell").css("border-radius",0.02*cellWidth);
+    $("#grid-container").css("width",(gridWidth - 2*gapWidth)+"px");
+    $("#grid-container").css("height",(gridWidth - 2*gapWidth)+"px");
+    $("#grid-container").css("padding",(gapWidth)+"px");
+    $("#grid-container").css("border-radius",(0.02*gridWidth)+"px");
+    $("#grid-container").css("margin-top",(2*gapWidth)+"px");
+    $("#grid-container").css("margin-bottom",(2*gapWidth)+"px");
+    $(".grid-cell").css("width",cellWidth+"px");
+    $(".grid-cell").css("height",cellWidth+"px");
+    $(".grid-cell").css("border-radius",(0.02*cellWidth)+"px");
 }
 
 
 $(document).ready(function(){
-    if(documentScreenWidth>500){
-        cellWidth =100;
+    if(documentScreenWidth>500) {
+        gridWidth = 500;
+        cellWidth = 100;
         gapWidth = 20;
-    }else{
-        prepareForMobel();
     }
+        prepareForMobel();
 
     newGame();
 });
@@ -90,9 +90,11 @@ function updateBoardView(){
                 theNumberCell.css("background-color",getBackgroundColor(board[i][j]));
                 theNumberCell.css("color",getNumberColor(board[i][j]));
                 if(board[i][j]>512){
-                    theNumberCell.css("font-size","40px");
+                    theNumberCell.css("font-size",0.4*cellWidth+"px");
                 }
                 theNumberCell.text(board[i][j]);
+                theNumberCell.css("font-size",0.6*cellWidth+"px");
+                theNumberCell.css("line-height",cellWidth+"px");
 
             }
         }
@@ -131,6 +133,7 @@ document.addEventListener('touchstart',function(event){
 });
 
 document.addEventListener('touchend',function(event){
+    event.preventDefault();
     var endx = event.changedTouches[0].pageX;
     var endy = event.changedTouches[0].pageY;
     var deltax = endx - startx;
